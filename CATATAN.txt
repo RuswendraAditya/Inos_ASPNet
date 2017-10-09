@@ -1,0 +1,3 @@
+catatan
+1. TAMBAHAN DI FIELD VC_DARI_PEJABAT(4) DI TABLE SKRSURATD
+2. 		     vc_jawab(4)

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ActiveReportsLayout Version="3" PrintWidth="9360" DocumentName="ARNet Document" ScriptLang="C#" CodeFile="">
+  <StyleSheet>
+    <Style Name="Normal" Value="font-family: Arial; font-style: normal; text-decoration: none; font-weight: normal; font-size: 10pt; color: Black; " />
+    <Style Name="Heading1" Value="font-size: 16pt; font-weight: bold; " />
+    <Style Name="Heading2" Value="font-size: 14pt; font-weight: bold; font-style: italic; " />
+    <Style Name="Heading3" Value="font-size: 13pt; font-weight: bold; " />
+  </StyleSheet>
+  <Sections>
+    <Section Type="PageHeader" Name="PageHeader" Height="0" BackColor="16777215" CanGrow="0" />
+    <Section Type="Detail" Name="Detail" Height="2070" ColumnCount="2" ColumnDirection="1" BackColor="16777215" KeepTogether="1" CanGrow="0">
+      <Control Type="AR.Label" Name="lblNorthWind" MOD="4" Left="90" Top="90" Width="1800" Height="360" Caption="NorthWind" Style="color: #000000; ddo-char-set: 0; text-align: center; background-color: #FFFFC0; font-size: 16pt; " />
+      <Control Type="AR.Label" Name="lblTraders" MOD="4" BorderTopStyle="7" BorderTopColor="0" Left="90" Top="450" Width="1800" Height="360" Caption="Traders" Style="color: #000000; ddo-char-set: 0; text-align: center; background-color: #FFFFC0; font-size: 16pt; " />
+      <Control Type="AR.Label" Name="lblAddr1" MOD="4" Left="2070" Top="180" Width="2520" Height="270" Caption="One Portals Way" Style="color: #000000; ddo-char-set: 0; text-align: right; font-size: 8.5pt; " />
+      <Control Type="AR.Label" Name="lblAddr2" MOD="4" Left="2070" Top="450" Width="2520" Height="270" Caption="Twin Points WA  98156" Style="color: #000000; ddo-char-set: 0; text-align: right; font-size: 8.5pt; " />
+      <Control Type="AR.Line" Name="linSep1" MOD="4" X1="90" Y1="900" X2="4590" Y2="900" LineWeight="2" />
+      <Control Type="AR.Field" Name="txtName" DataField="CompanyName" MOD="4" Left="90" Top="990" Width="4500" Height="270" Text="Name" CanGrow="0" Style="color: #000000; ddo-char-set: 0; font-weight: bold; font-size: 8.5pt; " />
+      <Control Type="AR.Field" Name="txtAddress" DataField="Address" MOD="4" Left="90" Top="1260" Width="4500" Height="270" Text="Address" Style="color: #000000; ddo-char-set: 0; font-weight: bold; font-size: 8.5pt; " />
+      <Control Type="AR.Field" Name="txtCity" DataField="City" MOD="4" Left="90" Top="1530" Width="2520" Height="270" Text="City" CanGrow="0" Style="color: #000000; ddo-char-set: 0; font-weight: bold; font-size: 8.5pt; " />
+      <Control Type="AR.Field" Name="txtRegion" DataField="Region" MOD="4" Left="2700" Top="1530" Width="1890" Height="270" Text="Region" CanGrow="0" Style="color: #000000; ddo-char-set: 0; font-weight: bold; font-size: 8.5pt; " />
+      <Control Type="AR.Field" Name="txtPostalCode" DataField="PostalCode" MOD="4" Left="90" Top="1800" Width="1530" Height="270" Text="Postal Code" CanGrow="0" Style="color: #000000; ddo-char-set: 0; font-weight: bold; font-size: 8.5pt; " />
+      <Control Type="AR.Field" Name="txtCountry" DataField="Country" MOD="4" Left="1710" Top="1800" Width="2880" Height="270" Text="Country" CanGrow="0" Style="color: #000000; ddo-char-set: 0; font-weight: bold; font-size: 8.5pt; " />
+    </Section>
+    <Section Type="PageFooter" Name="PageFooter" Height="360" BackColor="16777215" CanGrow="0" />
+  </Sections>
+  <DataSources>
+    <OleDbDataSource Connect="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Program Files\Data Dynamics\ActiveReports for .NET 3.0\Data\NWIND.MDB;Persist Security Info=False" SQL="Select * From Customers WHERE Country='&lt;%Country|Country:|USA|S%&gt;'" />
+  </DataSources>
+  <PageSettings />
+</ActiveReportsLayout>

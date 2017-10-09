@@ -1,0 +1,98 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+<title>PPI RS.Bethesda</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css" media="screen">@import "StyleSheet.css";</style>
+<script type="text/javascript" >
+
+       function preventBack(){window.history.forward();}
+        setTimeout("preventBack()", 10);
+        window.onunload=function(){null};
+
+</script>
+</head>
+<body>
+<!--Begin Body Wrapper-->
+<div id="bodywrap" style="left: 0px; width: 1037px; top: 0px">
+<!--Begin Header Logo-->
+<div id="header" style="width: 934px; height: 7.28em; left: 0px; top: 0px;">
+</div>
+<!--End Header Logo-->
+<!--Begin Top Blue Navigation Menu-->
+<!--End Top Blue Navigation Menu-->
+<!--Begin Middle Main Container-->
+<!--div id="maincont" style="width: 935px">
+<div id="content"-->
+
+
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div id="Div1" style="background-image: url(Gambar/Kop.jpg); background-position: center 40%;"></div>
+        <div id="nav">        
+	        <ul>
+		        <li><a id="mnu0110" onserverclick="mnuHome_click" runat="server">Home</a></li>
+		        <li><a href="#">Informasi</a>
+			        <ul>
+				        <li><a id="mnu0101" onserverclick="mnu010101010000_click" runat="server">Informasi Pasien Inap</a></li>
+				        <li><a id="mnu0102" onserverclick="mnu010101020000_click" runat="server">Informasi Pasien Inap Per Ruang</a></li>
+			        </ul>
+		        </li>
+		        <li><a href="#">Transaksi</a>
+			        <ul >
+			            <li><a id="mnu0201" onserverclick="mnu010102010000_click" runat="server">Setup Target Surveilans</a></li>
+			            <li><a id="mnu0202" onserverclick="mnu010102020000_click" runat="server">Input Hasil Surveilans</a></li>
+			            <li><a id="mnu0203" onserverclick="mnu010102030000_click" runat="server">Input Surveilans Infeksi</a></li>
+			        </ul>
+		        </li>
+		        <li><a href="#">Laporan</a>
+ 			        <ul>
+				        <li><a id="mnu0301" onserverclick="mnu010103010000_click" runat="server">Laporan Bulanan</a></li>
+				        <li><a id="mnu0302" onserverclick="mnu010103020000_click" runat="server">Laporan Triwulan</a></li>
+				        <li><a id="mnu0303" onserverclick="mnu010103030000_click" runat="server">Laporan Operasi</a></li>
+				        <li><a id="mnu0304" onserverclick="mnu010103040000_click" runat="server">Laporan Rekap Surveilans</a></li>
+				        <li><a id="mnu0305" onserverclick="mnu010103050000_click" runat="server">Laporan Summary Surveilans</a></li>
+			        </ul>
+
+		        </li>
+		        <li><a href="#">Bantuan</a>
+ 			        <ul>
+				        <li><a id="mnu0401" onserverclick="mnu010104010000_click" runat="server">Edit Password</a></li>
+			        </ul>
+		        </li>
+		    
+		        <li><a id="mnu0500" onserverclick="mnu0500_click" runat="server">LogOff</a>
+		        </li>
+
+		        <li><a id="mnu0600" onserverclick="mnu0600_click" runat="server">Refresh</a>
+		        </li>
+                <%--<li><a id="mnu0700" onserverclick="mnu0700_click" runat="server">Daftar Pasien</a>
+		        </li>--%>
+  
+	        </ul>
+        </div> 
+                <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+                </asp:contentplaceholder>
+    </div>
+
+    </form>
+    <br />
+    <div id="footer" style="width: 1010px">
+        <a href="">Home</a> | <a href="">
+            News</a> | <a href="">Music</a> |
+        <a href="">Recipe</a> | <a href="">
+            Article</a> | <a href="">Games</a>
+        | <a href="">Jokes</a> | <a href="">
+            About Us</a> | <a href="">Contact Us</a>
+        <br />
+        Copyright Â© 2013 My Domain. All rights reserved. Website Designed By IT-RS. Bethesda.
+    </div>
+    <br />
+    <br />
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPageBlank.master.vb" Inherits="MasterPageBlank" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head id="Head1" runat="server">
+<title>IT RS.Bethesda</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css" media="screen">@import "style.css";</style>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="myportal.js">function mainnav_onclick() {
+
+}
+
+</script>
+</head>
+<body>
+<!--Begin Body Wrapper-->
+<div id="bodywrap" style="left: 0px; width: 939px; top: 0px">
+<!--Begin Header Logo-->
+<div id="header" style="width: 934px">
+</div>
+<!--End Header Logo-->
+<!--Begin Top Blue Navigation Menu-->
+<div id="mainnav" language="javascript" onclick="return mainnav_onclick()">
+    <ul id="navlist">
+      <li><a id="mnu0100" onserverclick="mnu0100_click" runat="server">Keluar</a></li>
+    </ul>
+  </div>
+
+<body>
+    <form id="form1" runat="server">
+    <div>
+        &nbsp;
+        <br />
+            <table border="0" align="center" cellpadding="0" cellspacing="0" id="outer" language="javascript" onclick="return outer_onclick()" style="width: 936px">
+  <tr>
+    <td style="height: 325px"><table border="0" cellspacing="0" cellpadding="0" style="width: 931px; height: 334px;">
+      <tr>
+    <td style="vertical-align: top"><table border="0" cellspacing="0" cellpadding="0" style="width: 921px">
+      <tr>
+        
+        <td valign="top" style="width: 444px; height: 202px; text-align: justify;" bordercolor="#ff9900">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+      </tr>
+    </table>
+  </tr>
+</table>
+    <br />
+    <div id="footer" style="width: 911px">
+        <a href="">Home</a> | <a href="">
+            News</a> | <a href="">Music</a> |
+        <a href="">Recipe</a> | <a href="">
+            Article</a> | <a href="">Games</a>
+        | <a href="">Jokes</a> | <a href="">
+            About Us</a> | <a href="">Contact Us</a>
+        <br />
+        Copyright Â© 2013 My Domain. All rights reserved. Website Designed By IT-RS. Bethesda.
+    </div>
+    </div>
+    </form>
+</body>
+</html>
+

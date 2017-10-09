@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ActiveReportsLayout Version="3.1" PrintWidth="13545" DocumentName="ARNet Document" ScriptLang="C#" MasterReport="0">
+  <StyleSheet>
+    <Style Name="Normal" Value="font-family: Arial; font-style: normal; text-decoration: none; font-weight: normal; font-size: 10pt; color: Black; " />
+    <Style Name="Heading1" Value="font-size: 16pt; font-weight: bold; " />
+    <Style Name="Heading2" Value="font-family: Times New Roman; font-size: 14pt; font-weight: bold; font-style: italic; " />
+    <Style Name="Heading3" Value="font-size: 13pt; font-weight: bold; " />
+  </StyleSheet>
+  <Sections>
+    <Section Type="PageHeader" Name="PageHeader1" Height="2715" BackColor="16777215">
+      <Control Type="AR.Label" Name="Label1" Left="3870" Top="90" Width="9630" Height="450" Caption="FORMULIR REKAPAN SURVEILANS HARIAN INFEKSI RUMAH SAKIT" Style="text-align: right; font-weight: bold; font-size: 12pt; " />
+      <Control Type="AR.Field" Name="TXTTANGGAL" Left="7200" Top="450" Width="6300" Height="360" Text="Tanggal :" Style="text-align: right; font-weight: bold; font-size: 12pt; " />
+      <Control Type="AR.Field" Name="TXTNAMARS" Left="0" Top="270" Width="5310" Height="360" Multiline="0" Style="ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 9pt; " />
+      <Control Type="AR.Field" Name="TXTALAMATRS" Left="0" Top="540" Width="5310" Height="360" Multiline="0" Style="ddo-char-set: 0; text-align: left; font-size: 9pt; " />
+      <Control Type="AR.Field" Name="TXTKOTARS" Left="0" Top="810" Width="5310" Height="360" Multiline="0" Style="ddo-char-set: 0; text-align: left; font-size: 9pt; " />
+      <Control Type="AR.Field" Name="TXTYAYASAN" Left="0" Top="0" Width="5310" Height="360" Multiline="0" Style="ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 9pt; " />
+      <Control Type="AR.Field" Name="TXTTELPON" Left="0" Top="1080" Width="5310" Height="360" Multiline="0" Style="ddo-char-set: 0; text-align: left; font-size: 9pt; " />
+      <Control Type="AR.Field" Name="TXTTGLCETAK" Left="11340" Top="1080" Width="2160" Height="270" Text="Tanggal :" Multiline="0" Style="ddo-char-set: 0; text-align: right; font-style: normal; font-size: 9pt; " />
+      <Control Type="AR.ReportInfo" Name="ReportInfo1" Left="12240" Top="810" Width="1260" Height="270" FormatString="{PageNumber} dari {PageCount}" Multiline="0" Style="ddo-char-set: 0; text-align: right; font-size: 9pt; " />
+      <Control Type="AR.Label" Name="Label3" Left="10710" Top="1080" Width="1440" Height="270" Caption="Tgl.Cetak  :" />
+      <Control Type="AR.Label" Name="Label4" Left="10710" Top="810" Width="1440" Height="270" Caption="Halaman   :" />
+      <Control Type="AR.Field" Name="TxtNamaKlinik" Left="0" Top="1440" Width="5310" Height="360" Multiline="0" Style="ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 12pt; font-family: Times New Roman; " />
+      <Control Type="AR.Label" Name="label2" Left="180" Top="2340" Width="810" Height="270" Caption="Tanggal" />
+      <Control Type="AR.Label" Name="label5" Left="1170" Top="2340" Width="810" Height="270" Caption="Kamar" />
+      <Control Type="AR.Label" Name="label6" Left="3870" Top="2340" Width="1530" Height="270" Caption="Nama Pasien" />
+      <Control Type="AR.Label" Name="label7" Left="5760" Top="2340" Width="540" Height="270" Caption="Umur" />
+      <Control Type="AR.Label" Name="label8" Left="6570" Top="2340" Width="540" Height="270" Caption="JK" />
+      <Control Type="AR.Label" Name="label9" Left="2700" Top="2340" Width="810" Height="270" Caption="No.RM" />
+      <Control Type="AR.Line" Name="line1" X1="180" Y1="2250" X2="9180" Y2="2250" />
+      <Control Type="AR.Line" Name="line2" X1="180" Y1="2700" X2="9180" Y2="2700" />
+    </Section>
+    <Section Type="GroupHeader" Name="groupHeader1" Height="0" BackColor="16777215" />
+    <Section Type="Detail" Name="Detail1" Height="389" BackColor="16777215">
+      <Control Type="AR.Field" Name="TxtTglMsk" Left="180" Top="0" Width="900" Height="270" />
+      <Control Type="AR.Field" Name="TxtKamar" Left="1170" Top="0" Width="1350" Height="270" />
+      <Control Type="AR.Field" Name="TxtNamaPasien" Left="3870" Top="0" Width="1800" Height="270" />
+      <Control Type="AR.Field" Name="TxtUmur" Left="5760" Top="0" Width="720" Height="270" />
+      <Control Type="AR.Field" Name="TxtJK" Left="6570" Top="0" Width="720" Height="270" />
+      <Control Type="AR.Field" Name="TxtNoRM" Left="2610" Top="0" Width="1170" Height="270" Style="color: Blue; " />
+      <Control Type="AR.Line" Name="line3" X1="0" Y1="360" X2="9000" Y2="360" />
+    </Section>
+    <Section Type="GroupFooter" Name="groupFooter1" Height="0" BackColor="16777215" />
+    <Section Type="PageFooter" Name="PageFooter1" Height="360" BackColor="16777215" />
+  </Sections>
+  <ReportComponentTray />
+  <PageSettings PaperSize="1" PaperWidth="12240" PaperHeight="15840" PaperName="" Orientation="2" />
+  <Parameters />
+</ActiveReportsLayout>

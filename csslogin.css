@@ -1,0 +1,164 @@
+﻿#header {
+	border-top: 0px solid #5256f2;
+	border-bottom: 0px dotted #5256f2;
+	height: 3em;
+}
+
+#nav ul ul {
+	display: none;
+}
+
+	#nav ul li:hover > ul {
+		display: block;
+	}
+
+#nav ul {
+	/*background: #efefef; 
+	background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);  
+	background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%); 
+	background: -webkit-linear-gradient(top, #efefef 0%,#bbbbbb 100%); */
+	background: #181f32; 
+    background: linear-gradient(top, #344268 0%, #181f32 100%);  
+    background: -moz-linear-gradient(top, #344268 0%, #181f32 100%); 
+    background: -webkit-linear-gradient(top, #344268 0%, #181f32 100%);
+	
+	/*box-shadow: 0px 0px 9px rgba(0,0,0,0.15);*/
+	padding: 0 20px;
+	/*border-radius: 10px;  */
+	list-style: none;
+	position: relative;
+	/*display: inline-table;*/
+	display:block 
+}
+	#nav ul:after {
+		content: ""; clear: both; display: block;
+	}
+	
+#nav ul li {
+	float: left;
+}
+	/*nav ul li:hover {
+		background: #4b545f;
+		background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+		background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+		background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);*/
+
+	#nav ul li:hover {
+        background: #344268;
+        background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+        background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+        background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
+	}
+		#nav ul li:hover a {
+			color: #fff;
+		}
+	
+	/*nav ul li a {
+		display: block; padding: 12px 27px;
+		color: #757575; text-decoration: none;*/
+
+	/*JARAK ANTAR NODE MENU*/
+	#nav ul li a {
+        display: block; padding: 5px 20px;	
+        color: #fff; text-decoration: none;
+	}
+	
+#nav ul ul {
+	/*background: #5f6975; border-radius: 0px; padding: 0;*/
+	position: absolute; top: 100%; 
+}
+	#nav ul ul li {
+		float: none;
+		border-top: 1px solid #6b727c;
+		border-bottom: 1px solid #575f6a;
+		position: relative;
+	}
+		#nav ul ul li a {
+			padding: 5px 30px;
+			color: #fff;
+		}	
+			#nav ul ul li a:hover {
+				background: #4b545f;
+			}
+			
+#nav ul ul ul {
+	position: absolute; left: 100%; top:0;
+}
+
+/* Main Content */
+
+#content 
+{
+	margin-top:0em;
+	margin-left: 0em;
+	margin-right: 5em;
+}
+
+h1 {
+	font: 150% Arial, Helvetica, Georgia, "Times New Roman", Times, serif;
+}
+#content p {
+	font-size: 80%;
+	line-height: 1.6em; 
+}
+
+
+#iklan {
+	width: 100px;
+	top: 5em;
+	width: 13em;	
+	right:0em;  
+	position:absolute;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:90%;
+}
+
+
+
+.button{
+	background-color: #3eea52;
+	background-image: none;
+	border-style:solid;
+	border-width:1;
+	border-color: green
+}
+
+/*warna baris pertama*/
+.mGrid { width: 100%; background-color: #f4f4f4; margin: 5px 0 10px 0; border: solid 1px #525252; border-collapse:collapse; } 
+/*warna font, lebar baris, tebal garis border 0c8730 = warna  border */
+.mGrid td { padding: 4px; border: solid 1px #0c8730; color: #060111; }
+/* warna header */
+.mGrid th { padding: 4px 2px; color: #fff; background: #147612 top; border-left: solid 1px #e3e55c; font-size: 0.9em; }
+/* warna baris ke 2 */
+/*.mGrid .alt { background: #fcfcfc url(grd_alt.png) repeat-x top; }*/
+.mGrid .alt { background: #fcfcfc; }
+/* warna Footer (jika allow paging = true */
+/*.mGrid .pgr {background: #424242 url(grd_pgr.png) repeat-x top; }*/
+.mGrid .pgr table { margin: 3px 0; }
+/* warna border/garis */
+.mGrid .pgr td { border-width: 0px; padding: 0 6px; border-left: solid 1px #e3e55c; font-weight:bold; color: #e3e55c; line-height: 15px; }   
+.mGrid .pgr a { color: #666; text-decoration: none; }
+.mGrid .pgr a:hover { color: #000; text-decoration: none; }
+
+.button{
+	background-color: #3eea52;
+	background-image: none;
+	border-style:solid;
+	border-width:1;
+	border-color: green;
+}
+
+.label {
+	color: #3eea52;
+}
+
+@media print {
+.header, .hide { visibility: hidden }
+ }
+
+.NonPrintable {
+      display: none;    
+}
+.Printable {
+	width:100%;
+}

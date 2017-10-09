@@ -1,0 +1,59 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPageRuangan.master.vb" Inherits="MasterPageRuangan" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+<title>E-RM RS.Bethesda</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css" media="screen">@import "StyleSheet.css";</style>
+<script type="text/javascript" ></script>
+</head>
+<body>
+<!--Begin Body Wrapper-->
+<div id="bodywrap" style="left: 0px; width: 939px; top: 0px">
+<!--Begin Header Logo-->
+<div id="header" style="width: 934px; height: 7.28em;">
+</div>
+<!--End Header Logo-->
+<!--Begin Top Blue Navigation Menu-->
+<!--End Top Blue Navigation Menu-->
+<!--Begin Middle Main Container-->
+<!--div id="maincont" style="width: 935px">
+<div id="content"-->
+
+
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div id="Div1" style="background-image: url(Gambar/Kop.jpg); background-position: center 40%;"></div>
+        <div id="nav">        
+	        <ul>
+		        <li><a id="mnu0110" onserverclick="mnuHome_click" runat="server">Home</a></li>
+		        <li><a id="mnu0600" onserverclick="mnu0600_click" runat="server">Refresh</a>
+		        </li>
+
+	        </ul>
+        </div> 
+                <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+                </asp:contentplaceholder>
+    </div>
+
+    </form>
+    <br />
+    <div id="footer" style="width: 911px">
+        <a href="">Home</a> | <a href="">
+            News</a> | <a href="">Music</a> |
+        <a href="">Recipe</a> | <a href="">
+            Article</a> | <a href="">Games</a>
+        | <a href="">Jokes</a> | <a href="">
+            About Us</a> | <a href="">Contact Us</a>
+        <br />
+        Copyright Â© 2013 My Domain. All rights reserved. Website Designed By IT-RS. Bethesda.
+    </div>
+    <br />
+    <br />
+</body>
+
+</html>

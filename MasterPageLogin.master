@@ -1,0 +1,59 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPageLogin.master.vb" Inherits="MasterPageLogin" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<title>PPI RS.Bethesda</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css" media="screen">@import "style.css";</style>
+<script type="text/javascript" src="myportal.js"></script>
+</head>
+<body>
+<!--Begin Body Wrapper-->
+<div id="bodywrap" style="left: 0px; width: 939px; top: 0px">
+<!--Begin Header Logo-->
+<div id="header" style="width: 934px">
+</div>
+<!--End Header Logo-->
+<!--Begin Top Blue Navigation Menu-->
+<div id="mainnav">
+    <!--ul id="navlist">
+      <li><a title="Homepage" href="http://www.ex-designz.net">Home</a></li>
+      <li><a title="Headline News section" href="http://www.ex-designz.net/headlinenews.asp">News</a></li>
+      <li><a title="Music section" href="http://www.ex-designz.net/lyricskaraoke.asp">Music</a></li>
+      <li><a title="Recipe section" href="http://www.ex-designz.net/recipemain.asp">Recipe</a></li>
+      <li><a title="Article section" href="http://www.ex-designz.net/article.asp">Article</a></li>
+      <li><a title="Free Online Games section" href="http://www.ex-designz.net/gameroom/default.asp">Games</a></li>
+      <li><a title="Jokes and Humor section" href="http://www.ex-designz.net/extremejoke.asp">Jokes</a></li>
+      <li><a title="About Us section" href="http://www.ex-designz.net/about.asp">About Us</a></li>
+    </ul-->
+  </div>
+<!--End Top Blue Navigation Menu-->
+<!--Begin Middle Main Container-->
+<!--div id="maincont" style="width: 935px">
+<div id="content"-->
+
+
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+            </asp:contentplaceholder>
+    </div>
+    </form>
+    <br />
+    <div id="footer" style="width: 911px">
+        <a href="">Home</a> | <a href="">
+            News</a> | <a href="">Music</a> |
+        <a href="">Recipe</a> | <a href="">
+            Article</a> | <a href="">Games</a>
+        | <a href="">Jokes</a> | <a href="">
+            About Us</a> | <a href="">Contact Us</a>
+        <br />
+        Copyright Â© 2013 My Domain. All rights reserved. Website Designed By IT-RS. Bethesda.
+    </div>
+    <br />
+    <br />
+</body>
+
+</html>
