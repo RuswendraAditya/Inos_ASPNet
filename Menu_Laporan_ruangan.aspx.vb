@@ -8,7 +8,7 @@ Partial Class Menu_Laporan_ruangan
     End Sub
 
     Protected Sub LBHAIs_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LBHAIs.Click
-        Session("urlback") = Request.Url.ToString
+
         Response.Redirect("~/HAIS.aspx?pBulan=" & Me.ddlbulan.SelectedValue & "&pTahun=" & Me.TxtTahun.Text & "&kRuang=" & Me.DDLRUANG.SelectedValue)
 
     End Sub

@@ -38,7 +38,12 @@ Partial Class MasterPageRuangan
         Response.Redirect("~/Form_Surveilans_hasil.aspx")
         'GetAccess("010102020000")
     End Sub
-
+ 
+    Sub mnu010102030000_click(ByVal sender As Object, ByVal e As EventArgs)
+        Session("urlback") = Request.Url.ToString
+        Response.Redirect("~/FormSearchingInputSurveilans.aspx")
+        'GetAccess("010102030000")
+    End Sub
 
     Sub mnu010103010000_click(ByVal sender As Object, ByVal e As EventArgs)
         Response.Redirect("menu_laporan.aspx")
@@ -48,6 +53,17 @@ Partial Class MasterPageRuangan
     Sub mnu010103020000_click(ByVal sender As Object, ByVal e As EventArgs)
         Response.Redirect("Triwulan.aspx")
         'GetAccess("010103020000")
+    End Sub
+
+    Sub mnu010103040000_click(ByVal sender As Object, ByVal e As EventArgs)
+        Session("urlback") = Request.Url.ToString
+        Response.Redirect("FormSearchRekapSurveilans.aspx")
+        'GetAccess("010103040000")
+    End Sub
+    Sub mnu010103050000_click(ByVal sender As Object, ByVal e As EventArgs)
+        Session("urlback") = Request.Url.ToString
+        Response.Redirect("FormSearchLaporanInfeksiSummary.aspx")
+        'GetAccess("010103050000")
     End Sub
 
     Sub mnu010104010000_click(ByVal sender As Object, ByVal e As EventArgs)
@@ -126,9 +142,16 @@ Partial Class MasterPageRuangan
                 Response.Redirect("~/Frmbtarget.aspx")
             End If
 
+
             'Transaksi -> input surveilans hasil
             If objdatareader("VC_codemenu").ToString = "010102020000" Then
                 Response.Redirect("~/Form_Surveilans_hasil.aspx")
+            End If
+
+            'Transaksi -> input surveilans_infeksi
+            If objdatareader("VC_codemenu").ToString = "010102030000" Then
+                Session("urlback") = Request.Url.ToString
+                Response.Redirect("~/FormSearchingInputSurveilans.aspx")
             End If
 
             'LAPORAN -> BULANAN
@@ -140,6 +163,25 @@ Partial Class MasterPageRuangan
             If objdatareader("VC_codemenu").ToString = "010103020000" Then
                 Response.Redirect("TRIWULAN.aspx")
             End If
+
+            'LAPORAN -> TRI BULANAN
+            If objdatareader("VC_codemenu").ToString = "010103020000" Then
+                Response.Redirect("TRIWULAN.aspx")
+            End If
+
+            'LAPORAN -> OPERASI
+            If objdatareader("VC_codemenu").ToString = "010103030000" Then
+                Response.Redirect("laporan_operasi.aspx")
+            End If
+
+            ''LAPORAN -> Rekap Surveilans
+            'If objdatareader("VC_codemenu").ToString = "010103040000" Then
+            '    Response.Redirect("~/FormSearchRekapSurveilans.aspx")
+            'End If
+            ''LAPORAN ->  Summary Surveilans
+            'If objdatareader("VC_codemenu").ToString = "010103050000" Then
+            '    Response.Redirect("~/FormSearchLaporanInfeksiSummary.aspx")
+            'End If
 
             'BANTUAN -> EDIT PASSWORD
             If objdatareader("VC_codemenu").ToString = "010104010000" Then

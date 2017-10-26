@@ -37,8 +37,8 @@ Partial Class MasterPage
     End Sub
 
     Sub mnu010102030000_click(ByVal sender As Object, ByVal e As EventArgs)
-        'Response.Redirect("~/FormSearchingInputSurveilans.aspx")
-        GetAccess("010102030000")
+        Response.Redirect("~/FormSearchingInputSurveilans.aspx")
+        'GetAccess("010102030000")
     End Sub
 
 
@@ -58,10 +58,12 @@ Partial Class MasterPage
     End Sub
 
     Sub mnu010103040000_click(ByVal sender As Object, ByVal e As EventArgs)
+        Session("urlback") = Request.Url.ToString
         Response.Redirect("FormSearchRekapSurveilans.aspx")
         'GetAccess("010103040000")
     End Sub
     Sub mnu010103050000_click(ByVal sender As Object, ByVal e As EventArgs)
+        Session("urlback") = Request.Url.ToString
         Response.Redirect("FormSearchLaporanInfeksiSummary.aspx")
         'GetAccess("010103050000")
     End Sub
@@ -151,6 +153,7 @@ Partial Class MasterPage
 
             'Transaksi -> input surveilans_infeksi
             If objdatareader("VC_codemenu").ToString = "010102030000" Then
+                Session("urlback") = Request.Url.ToString
                 Response.Redirect("~/FormSearchingInputSurveilans.aspx")
             End If
 

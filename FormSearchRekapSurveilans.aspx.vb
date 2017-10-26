@@ -21,4 +21,13 @@ Partial Class FormSearchRekapSurveilans
             End With
         End If
     End Sub
+
+    Protected Sub btnKeluar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnKeluar.Click
+        If (Session("source") = "USER") Then
+            Response.Redirect("menu_laporan_ruangan.aspx")
+        End If
+        If (Session("source") = "PPI") Then
+            Response.Redirect("beranda.aspx")
+        End If
+    End Sub
 End Class

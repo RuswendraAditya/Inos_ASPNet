@@ -1,4 +1,4 @@
-<%@ Page Language="VB" EnableEventValidation = "false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="FormSearchingInputSurveilans.aspx.vb" Inherits="FormSearchingInputSurveilans" title="Pencarian Pasien Inap" %>
+<%@ Page Language="VB" EnableEventValidation = "false" MasterPageFile="~/MasterPageLogin.master" AutoEventWireup="false" CodeFile="FormSearchingInputSurveilans.aspx.vb" Inherits="FormSearchingInputSurveilans" title="Pencarian Pasien Inap" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table style="width: 540px">
         <tr>
@@ -61,15 +61,6 @@
                     </tr>
                     <tr>
                         <td style="width: 263px">
-                            Ruangan</td>
-                        <td style="width: 5px">
-                            :</td>
-                        <td style="width: 1389px">
-                            <asp:DropDownList ID="DDLRUANG" runat="server" AutoPostBack="True" Width="235px">
-                            </asp:DropDownList></td>
-                    </tr>
-                    <tr>
-                        <td style="width: 263px">
                         </td>
                         <td style="width: 5px">
                         </td>
@@ -79,9 +70,8 @@
                     <tr>
                         <td colspan="3" style="height: 34px">
                             <asp:Button ID="CmdCariPasien" runat="server" CssClass="button" Height="32px" Text="Cari"
-                                Width="99px" />&nbsp;<asp:Button ID="CmdBatal" runat="server" CssClass="button" Height="32px"
-                                    Text="Batal" Width="99px" Visible="False" />
-                        </td>
+                                Width="99px" />&nbsp;
+                            <asp:Button ID="btnKeluar" runat="server" Height="32px" Text="Keluar" /></td>
                     </tr>
                 </table>
                 <asp:SqlDataSource ID="SdsPasien" runat="server"></asp:SqlDataSource>
@@ -109,7 +99,7 @@
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Left" Width="100px" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Kelurahan">
+                        <%--<asp:TemplateField HeaderText="Kelurahan">
                             <ItemTemplate>
                                 <asp:Label ID="LabelKelurahan" runat="server" Text='<%# Bind("vc_kelurahan") %>'></asp:Label>
                             </ItemTemplate>
@@ -126,8 +116,8 @@
                                 <asp:Label ID="LabelKota" runat="server" Text='<%# Bind("vc_Kota") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle Width="100px" />
-                        </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Kamar">
+                        </asp:TemplateField>--%>
+                       <asp:TemplateField HeaderText="Kamar Terakhir">
                             <ItemTemplate>
                                 <asp:Label ID="lblKamar" runat="server" Text='<%# Bind("kamar") %>'></asp:Label>
                             </ItemTemplate>

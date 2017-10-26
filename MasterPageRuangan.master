@@ -31,6 +31,17 @@
         <div id="nav">        
 	        <ul>
 		        <li><a id="mnu0110" onserverclick="mnuHome_click" runat="server">Home</a></li>
+		         <li><a href="#">Transaksi</a>
+			        <ul >
+			            <li><a id="mnu0203" onserverclick="mnu010102030000_click" runat="server">Input Surveilans Infeksi</a></li>
+			        </ul>
+		        </li>
+		        <li><a href="#">Laporan</a>
+ 			        <ul>
+				        <li><a id="mnu0304" onserverclick="mnu010103040000_click" runat="server">Laporan Rekap Surveilans</a></li>
+				        <li><a id="mnu0305" onserverclick="mnu010103050000_click" runat="server">Laporan Summary Surveilans</a></li>
+			        </ul>
+		        </li>
 		        <li><a id="mnu0600" onserverclick="mnu0600_click" runat="server">Refresh</a>
 		        </li>
 

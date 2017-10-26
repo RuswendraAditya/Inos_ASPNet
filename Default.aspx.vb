@@ -12,6 +12,7 @@ Partial Class _Default
 
         If MasterLib.CheckUser(Me.txtUserName.Text, Me.txtPwd.Text, "") Then
             Session("ssusername") = UCase(txtUserName.Text.ToString().Trim())
+            Session("source") = "PPI"
             Session("cIdUser") = MasterLib.ShowData("vc_username", "vc_id", "pde_user", UCase(Me.txtUserName.Text), "")
             Response.Redirect("BERANDA.aspx")
         Else

@@ -48,6 +48,7 @@ Partial Class MasterPageBlank
 
     Sub mnu0100_click(ByVal sender As Object, ByVal e As EventArgs)
         'KELUAR
+        'Response.Redirect(Session("urlback"))
         Response.Redirect(Session("urlback"))
     End Sub
 

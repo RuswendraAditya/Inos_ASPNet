@@ -6,14 +6,14 @@ Partial Class FormSearchingInputSurveilans
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not Page.IsPostBack Then
-            With Me.DDLRUANG
-                .DataSource = MasterLib.SetDataSourceRuang()
-                .DataTextField = "vc_n_ruang"
-                .DataValueField = "vc_k_ruang"
-                .DataBind()
-            End With
-        End If
+        'If Not Page.IsPostBack Then
+        '    With Me.DDLRUANG
+        '        .DataSource = MasterLib.SetDataSourceRuang()
+        '        .DataTextField = "vc_n_ruang"
+        '        .DataValueField = "vc_k_ruang"
+        '        .DataBind()
+        '    End With
+        'End If
     End Sub
     Protected Sub CmdCariPasien_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles CmdCariPasien.Click
         If Me.ValidationCariPasien = True Then
@@ -26,7 +26,7 @@ Partial Class FormSearchingInputSurveilans
     End Sub
 
     Function ValidationCariPasien() As Boolean
-        If Me.TxtCariNama.Text.Length = 0 And Me.TxtCariKelurahan.Text.Length = 0 And Me.TxtCariKecamatan.Text.Length = 0 And Me.TxtCariKota.Text.Length = 0 And Me.TxtCariNoRM.Text.Length = 0 And Me.DDLRUANG.Text = "000X" Then
+        If Me.TxtCariNama.Text.Length = 0 And Me.TxtCariKelurahan.Text.Length = 0 And Me.TxtCariKecamatan.Text.Length = 0 And Me.TxtCariKota.Text.Length = 0 And Me.TxtCariNoRM.Text.Length = 0 Then
             Return False
         Else
             Return True
@@ -83,10 +83,6 @@ Partial Class FormSearchingInputSurveilans
             strsql = strsql & "AND (RMPasien.[VC_no_rm])like '%" & UCase(Me.TxtCariNoRM.Text) & "%' "
         End If
 
-        If Me.DDLRUANG.Text <> "000X" Then
-            strsql = strsql & "AND vc_k_gugus = '" & Me.DDLRUANG.SelectedValue & "' "
-        End If
-
         strsql = strsql + " ORDER BY RMPasien.VC_NAMA_P"
 
         SdsPasien.SelectCommand = strsql
@@ -106,6 +102,45 @@ Partial Class FormSearchingInputSurveilans
     Protected Sub GridView1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles GridView1.SelectedIndexChanged
         Dim index As Integer = GridView1.SelectedIndex
         Session("urlback") = Request.Url.ToString
-        Response.Redirect("~/FormInputSurveilansInfeksi.aspx?noRM=" & GridView1.DataKeys(index).Values(0).ToString() & "&noReg=" & GridView1.DataKeys(index).Values(1).ToString())
+        If (checkSurInfeksiExists(GridView1.DataKeys(index).Values(0).ToString(), GridView1.DataKeys(index).Values(1).ToString())) Then
+            Response.Redirect("~/FormSearchingDataSurveilans.aspx?noRM=" & GridView1.DataKeys(index).Values(0).ToString() & "&noReg=" & GridView1.DataKeys(index).Values(1).ToString())
+        Else
+            Response.Redirect("~/FormInputSurveilansInfeksi.aspx?noRM=" & GridView1.DataKeys(index).Values(0).ToString() & "&noReg=" & GridView1.DataKeys(index).Values(1).ToString())
+        End If
     End Sub
+
+    Protected Sub btnKeluar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnKeluar.Click
+        If (Session("source") = "USER") Then
+            Response.Redirect("menu_laporan_ruangan.aspx")
+        End If
+        If (Session("source") = "PPI") Then
+            Response.Redirect("beranda.aspx")
+        End If
+    End Sub
+
+    'check data surveilans infeksi sudah ada belum
+    Function checkSurInfeksiExists(ByVal noRm As String, ByVal noReg As String) As Boolean
+
+        Dim strsql As String = ""
+        Dim dataExists As Boolean = False
+        strsql = "SELECT vc_no_rm,vc_no_reg FROM  Inos_Surveilans_Infeksi where vc_no_rm = '" & noRm & "' and vc_no_reg = '" & noReg & "'"
+
+        Dim connectionString As String = WebConfigurationManager.ConnectionStrings("koneksi").ConnectionString
+        Dim connection As SqlConnection = New SqlConnection(connectionString)
+        Dim command As SqlCommand = New SqlCommand()
+
+        Dim sqlCommand As New SqlClient.SqlCommand(strsql)
+        sqlCommand.Connection = connection
+        connection.Open()
+
+        Dim dr As SqlClient.SqlDataReader
+        dr = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection)
+
+        While dr.Read
+            dataExists = True
+            Exit While
+        End While
+        dr.Close()
+        Return dataExists
+    End Function
 End Class

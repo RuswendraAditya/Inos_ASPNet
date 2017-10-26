@@ -31,7 +31,7 @@
                     CellPadding="4" CssClass="mGrid" Height="30px" ShowFooter="True" Width="328px" Font-Size="7pt" Font-Italic="True">
                     <RowStyle BackColor="#E3EAEB" />
                     <Columns>
-                        <asp:TemplateField HeaderText="Tgl" >
+                        <asp:TemplateField HeaderText="Periode" >
                             <ItemTemplate>
                                 <asp:Label ID="lblTglMasuk" runat="server"  Text='<%# Bind("tgl_trans","{0:dd/MM/yyyy}") %>'></asp:Label>
                             </ItemTemplate>

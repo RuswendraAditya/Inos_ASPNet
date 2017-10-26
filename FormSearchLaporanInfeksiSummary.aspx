@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="FormSearchLaporanInfeksiSummary.aspx.vb" Inherits="FormSearchLaporanInfeksiSummary" %>
+<%@ Page Language="VB" MasterPageFile="~/MasterPageLogin.master" AutoEventWireup="false" CodeFile="FormSearchLaporanInfeksiSummary.aspx.vb" Inherits="FormSearchLaporanInfeksiSummary" %>
  
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -65,5 +65,6 @@
     </table>
                 <div align="center">
                  <asp:Button ID="BtnView" runat="server" Text="View Data" Width="112px" Height="40px" />
+                    <asp:Button ID="btnKeluar" runat="server" Text="Keluar" Width="112px" Height="40px" />
            </div>
 </asp:Content>

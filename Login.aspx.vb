@@ -19,6 +19,8 @@ Partial Class Login
         'End If
 
         If Me.txtUserName.Text = "user" And Me.txtPwd.Text = "user" Then
+            Session("source") = "USER"
+            Session("ssusername") = UCase(txtUserName.Text.ToString().Trim())
             Response.Redirect("menu_laporan_ruangan.aspx")
         End If
     End Sub

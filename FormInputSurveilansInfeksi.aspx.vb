@@ -9,16 +9,18 @@ Partial Class FormInputSurveilansInfeksi
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If (Not Page.IsPostBack) Then
             loadDataPasien()
-            If (checkSurInfeksiExists(Request.QueryString("noRM"), Request.QueryString("noReg"))) Then
-                bindDataExists(Request.QueryString("noRM"), Request.QueryString("noReg"))
-
+            If (checkSurInfeksiExists(Request.QueryString("transactionId"), Request.QueryString("noRM"), Request.QueryString("noReg"))) Then
+                bindDataExists(Request.QueryString("transactionId"), Request.QueryString("noRM"), Request.QueryString("noReg"))
             End If
-
         End If
      
 
     End Sub
     Private Sub disabledForm()
+        Me.DDLRUANG.Enabled = False
+        Me.DDLKamar.Enabled = False
+        Me.ddlbulan.Enabled = False
+        Me.TxtTahun.Enabled = False
         Me.dateVENAPasang.Enabled = False
         Me.dateVENAAff.Enabled = False
         Me.TextLamaHari1.Enabled = False
@@ -65,6 +67,10 @@ Partial Class FormInputSurveilansInfeksi
     End Sub
 
     Private Sub enabledForm()
+        Me.DDLRUANG.Enabled = True
+        Me.DDLKamar.Enabled = True
+        Me.ddlbulan.Enabled = True
+        Me.TxtTahun.Enabled = True
         Me.dateVENAPasang.Enabled = True
         Me.dateVENAAff.Enabled = True
         Me.TextLamaHari1.Enabled = True
@@ -113,7 +119,7 @@ Partial Class FormInputSurveilansInfeksi
     Private Sub loadDataPasien()
         Dim strsql As String = ""
 
-        strsql = "SELECT RMPasien.vc_no_rm, RMPasien.vc_nama_p,RMPasien.vc_jenis_k,ruang.VC_n_ruang,RMPasien.vc_alamat, RMP_inap.vc_no_reg, RMP_inap.dt_tgl_msk,RMKAMAR.VC_NAMA as kamar,RMKamar.vc_k_gugus ,RMP_inap.VC_ALERGI , CASE WHEn ISNULL(IN_UMURTH,'') > 0 THEN ltrim(str(IN_UMURTH)) + ' Th ' + ltrim(str(IN_UMURbl)) + ' bl ' + ltrim(str(IN_UMURhr)) + ' hr' ELSE " & _
+        strsql = "SELECT RMPasien.vc_no_rm, RMPasien.vc_nama_p,RMPasien.vc_jenis_k,RMPasien.vc_alamat, RMP_inap.vc_no_reg, RMP_inap.dt_tgl_msk,RMKAMAR.VC_NAMA as kamar,RMKamar.vc_k_gugus ,RMP_inap.VC_ALERGI , CASE WHEn ISNULL(IN_UMURTH,'') > 0 THEN ltrim(str(IN_UMURTH)) + ' Th ' + ltrim(str(IN_UMURbl)) + ' bl ' + ltrim(str(IN_UMURhr)) + ' hr' ELSE " & _
                 "CASE WHEn ISNULL(IN_UMURTH,'')<= 0 and ISNULL(IN_UMURbl,'') > 0 and ISNULL(IN_UMURhr,'') > 0 THEN ltrim(str(IN_UMURbl)) + ' bl ' + ltrim(str(IN_UMURhr)) + ' hr' else " & _
                 "CASE WHEn ISNULL(IN_UMURTH,'') <= 0 and ISNULL(IN_UMURbl,'') <= 0 and ISNULL(IN_UMURhr,'') > 0 THEN ltrim(str(IN_UMURhr)) + ' hr' else Str(0) end END end as umur, dbo.BPJS_RefDiagnosis_inasis.Description  FROM RMPasien INNER JOIN " & _
                  "RMP_inap ON RMPasien.vc_no_rm = RMP_inap.vc_no_rm INNER JOIN " & _
@@ -122,7 +128,7 @@ Partial Class FormInputSurveilansInfeksi
                  "ELSE RMP_inap.vc_kd_kamar_MUTasi End = rmkamar.vc_no_bed " & _
          "LEFT JOIN dbo.BPJS_RefDiagnosis_inasis ON dbo.RMP_inap.vc_alergi = dbo.BPJS_RefDiagnosis_inasis.Code " & _
          "LEFT JOIN RMRuang ruang ON vc_k_gugus = ruang.vc_k_ruang " & _
-                "WHERE RMPasien.vc_no_rm = '" & Request.QueryString("noRM") & "' and RMP_inap.vc_no_reg ='" & Request.QueryString("noReg") & "'  "
+                "WHERE  RMPasien.vc_no_rm = '" & Request.QueryString("noRM") & "' and RMP_inap.vc_no_reg ='" & Request.QueryString("noReg") & "'  "
 
         Dim connectionString As String = WebConfigurationManager.ConnectionStrings("koneksi").ConnectionString
         Dim connection As SqlConnection = New SqlConnection(connectionString)
@@ -141,7 +147,6 @@ Partial Class FormInputSurveilansInfeksi
         Me.TxtNoREG.Text = ""
         Me.TxtUmur.Text = ""
         Me.TxtKelamin.Text = ""
-        Me.TxtRuang.Text = ""
         Me.TxtDiagnosa.Text = ""
 
         While dr.Read
@@ -151,8 +156,7 @@ Partial Class FormInputSurveilansInfeksi
             Me.TxtNoREG.Text = dr("vc_no_reg")
             Me.TxtUmur.Text = dr("umur")
             Me.TxtKelamin.Text = dr("vc_jenis_k")
-            Me.TxtRuang.Text = dr("VC_n_ruang")
-            Me.txtKamar.Text = dr("kamar")
+            'Me.txtKamar.Text = dr("kamar")
             Me.TxtDiagnosa.Text = dr("vc_alergi")
 
         End While
@@ -160,13 +164,25 @@ Partial Class FormInputSurveilansInfeksi
         If TxtDiagnosa.Text.Length > 0 Then
             Me.TxtDiagnosa.Enabled = False
         End If
+
+        With Me.DDLRUANG
+            .DataSource = MasterLib.SetDataSourceRuang()
+            .DataTextField = "vc_n_ruang"
+            .DataValueField = "vc_k_ruang"
+            .DataBind()
+        End With
+        DDLRUANG.Items.Insert(0, New ListItem("---", "---"))
+        Me.ddlbulan.Text = Month(MasterLib.GetCurrentDate)
+        Me.TxtTahun.Text = Year(MasterLib.GetCurrentDate)
+        Me.DDLRUANG.Items.Remove(DDLRUANG.Items.FindByText("SEMUA"))
+
     End Sub
 
     'untuk menbinding data lama
-    Private Sub bindDataExists(ByVal noRm As String, ByVal noReg As String)
+    Private Sub bindDataExists(ByVal transactionId As Integer, ByVal noRm As String, ByVal noReg As String)
 
         Dim strsql As String = ""
-        strsql = "SELECT vc_diagnosa,cast(NULLIF([dt_vena_pasang],'') AS DATETIME) dt_vena_pasang,cast(NULLIF([dt_vena_aff],'') AS DATETIME) dt_vena_aff,in_hari_vena " & _
+        strsql = "SELECT vc_ruang,vc_nama_kamar,vc_diagnosa,cast(NULLIF([dt_vena_pasang],'') AS DATETIME) dt_vena_pasang,cast(NULLIF([dt_vena_aff],'') AS DATETIME) dt_vena_aff,in_hari_vena " & _
            ", cast(NULLIF([dt_cvp_pasang],'') AS DATETIME) dt_cvp_pasang,cast(NULLIF([dt_cvp_aff],'') AS DATETIME) dt_cvp_aff,in_hari_cvp " & _
            ",cast(NULLIF([dt_urine_pasang],'') AS DATETIME) dt_urine_pasang,cast(NULLIF([dt_urine_aff],'') AS DATETIME) dt_urine_aff,in_hari_urine " & _
            ",cast(NULLIF([dt_ett_pasang],'') AS DATETIME) dt_ett_pasang,cast(NULLIF([dt_ett_aff],'') AS DATETIME) dt_ett_aff,in_hari_ett " & _
@@ -178,7 +194,7 @@ Partial Class FormInputSurveilansInfeksi
            ",cast(NULLIF([dt_infeksi_VAP],'') AS DATETIME) dt_infeksi_VAP, vc_kultur_VAP,cast(NULLIF([dt_infeksi_HAP],'') AS DATETIME)dt_infeksi_HAP,vc_kultur_HAP " & _
            ",cast(NULLIF([dt_infeksi_IADP],'') AS DATETIME) dt_infeksi_IADP, vc_kultur_IADP,cast(NULLIF([dt_infeksi_plebitis],'') AS DATETIME) dt_infeksi_plebitis,vc_kultur_plebitis " & _
             ",cast(NULLIF([dt_infeksi_dekubitus],'') AS DATETIME) dt_infeksi_dekubitus, vc_kultur_dekubitus,vc_antibiotika " & _
-            " FROM Inos_Surveilans_Infeksi where vc_no_rm = '" & noRm & "' and vc_no_reg = '" & noReg & "'"
+            " FROM Inos_Surveilans_Infeksi where transaction_id = '" & transactionId & "' and vc_no_rm = '" & noRm & "' and vc_no_reg = '" & noReg & "'"
 
         Dim connectionString As String = WebConfigurationManager.ConnectionStrings("koneksi").ConnectionString
         Dim connection As SqlConnection = New SqlConnection(connectionString)
@@ -243,6 +259,15 @@ Partial Class FormInputSurveilansInfeksi
             If Not IsDBNull(dr("dt_tirah_aff")) Then
                 Me.dateTirahAff.Text = Format(dr("dt_tirah_aff"), "dd/MM/yyyy")
             End If
+            Me.DDLRUANG.SelectedValue = Me.DDLRUANG.Items.FindByText(Me.getNamaRuang(dr("vc_ruang"))).Value
+            getNamaKamarFromRuang()
+            Try
+                Me.DDLKamar.SelectedValue = Me.DDLKamar.Items.FindByText(dr("vc_nama_kamar")).Value
+            Catch ex As Exception
+                Me.DDLKamar.SelectedValue = ""
+            End Try
+
+            ' PESAN(Me.getKodeKamar(dr("vc_nama_kamar")))
             Me.TextLamaHari7.Text = dr("in_hari_tirah")
             Me.TxtHBSag.Text = dr("vc_HBSag")
             Me.TxtAntiHCV.Text = dr("vc_antiHCV")
@@ -377,11 +402,11 @@ Partial Class FormInputSurveilansInfeksi
         End If
     End Sub
     'check data surveilans infeksi sudah ada belum
-    Function checkSurInfeksiExists(ByVal noRm As String, ByVal noReg As String) As Boolean
+    Function checkSurInfeksiExists(ByVal Transaction_id As Integer, ByVal noRm As String, ByVal noReg As String) As Boolean
 
         Dim strsql As String = ""
         Dim dataExists As Boolean = False
-        strsql = "SELECT vc_no_rm,vc_no_reg FROM  Inos_Surveilans_Infeksi where vc_no_rm = '" & noRm & "' and vc_no_reg = '" & noReg & "'"
+        strsql = "SELECT vc_no_rm,vc_no_reg FROM  Inos_Surveilans_Infeksi where  transaction_id = '" & Transaction_id & "' and vc_no_rm = '" & noRm & "' and vc_no_reg = '" & noReg & "'"
 
         Dim connectionString As String = WebConfigurationManager.ConnectionStrings("koneksi").ConnectionString
         Dim connection As SqlConnection = New SqlConnection(connectionString)
@@ -405,7 +430,7 @@ Partial Class FormInputSurveilansInfeksi
     'untuk menyimpan data survelians 
     Function simpanData() As Boolean
         Dim strsql As String = ""
-
+        Dim Period As String = Me.ddlbulan.Text & "-" & Me.TxtTahun.Text
         simpanData = False
         Dim connectionString As String = WebConfigurationManager.ConnectionStrings("koneksi").ConnectionString
         Dim connection As SqlConnection = New SqlConnection(connectionString)
@@ -416,9 +441,12 @@ Partial Class FormInputSurveilansInfeksi
         MyTrans = connection.BeginTransaction()
         command.Transaction = MyTrans
         Try
-            If (checkSurInfeksiExists(Request.QueryString("noRM"), Request.QueryString("noReg")) = True) Then
+            If (checkSurInfeksiExists(Request.QueryString("transactionId"), Request.QueryString("noRM"), Request.QueryString("noReg")) = True) Then
                 strsql = "update Inos_Surveilans_Infeksi set " & _
-                                    " vc_diagnosa = '" & Me.TxtDiagnosa.Text & "' " & _
+                                    "  vc_ruang = '" & Me.DDLRUANG.SelectedValue & "' " & _
+                                    ", vc_nama_kamar = '" & Me.DDLKamar.SelectedItem.Text & "' " & _
+                                    ", vc_period = '" & Period & "' " & _
+                                    ", vc_diagnosa = '" & Me.TxtDiagnosa.Text & "' " & _
                                     ", dt_vena_pasang = '" & convertDateInput(Me.dateVENAPasang.Text) & "' " & _
                                     ", dt_vena_aff = '" & convertDateInput(Me.dateVENAAff.Text) & "' " & _
                                     ", in_hari_vena = '" & (Me.TextLamaHari1.Text) & "' " & _
@@ -463,10 +491,10 @@ Partial Class FormInputSurveilansInfeksi
                                     ", vc_antibiotika = '" & Me.txtAntibiotika.Text & "' " & _
                                     ", vc_last_updated_by = '" & Session("ssUserName") & "' " & _
                                     ", dt_last_update_date = '" & MasterLib.GetCurrentDate & "' " & _
-                                    " where vc_no_rm = '" & Request.QueryString("noRM") & "' and vc_no_reg = '" & Request.QueryString("noReg") & "' "
+                                    " where transaction_id =  '" & Request.QueryString("transactionId") & "' and vc_no_rm = '" & Request.QueryString("noRM") & "' and vc_no_reg = '" & Request.QueryString("noReg") & "' "
             End If
-            If (checkSurInfeksiExists(Request.QueryString("noRM"), Request.QueryString("noReg")) = False) Then
-                strsql = "insert into Inos_Surveilans_Infeksi (vc_no_rm ,vc_no_reg,vc_ruang,vc_nama_kamar,vc_diagnosa,dt_vena_pasang,dt_vena_aff,in_hari_vena, " & _
+            If (checkSurInfeksiExists(Request.QueryString("transactionId"), Request.QueryString("noRM"), Request.QueryString("noReg")) = False) Then
+                strsql = "insert into Inos_Surveilans_Infeksi (vc_no_rm ,vc_no_reg,vc_period,vc_ruang,vc_nama_kamar,vc_diagnosa,dt_vena_pasang,dt_vena_aff,in_hari_vena, " & _
                                     "dt_cvp_pasang,dt_cvp_aff,in_hari_cvp,dt_urine_pasang,dt_urine_aff,in_hari_urine,dt_ett_pasang,dt_ett_aff,in_hari_ett,dt_TT_pasang,dt_TT_aff,in_hari_TT, " & _
                                     "dt_ventilator_pasang,dt_ventilator_aff ,in_hari_ventilator, " & _
                                     "dt_tirah_pasang ,dt_tirah_aff,in_hari_tirah, " & _
@@ -475,7 +503,7 @@ Partial Class FormInputSurveilansInfeksi
                                     "dt_infeksi_HAP,vc_kultur_HAP,dt_infeksi_IADP,vc_kultur_IADP,dt_infeksi_plebitis,vc_kultur_plebitis,dt_infeksi_dekubitus,vc_kultur_dekubitus, " & _
                                     "vc_antibiotika,vc_create_by,dt_create_date,vc_last_updated_by,dt_last_update_date) " & _
                                                         " values " & _
-                                   "('" & Request.QueryString("noRM") & "','" & Request.QueryString("noReg") & "','" & getKodeRuang(Me.TxtRuang.Text) & "','" & Me.txtKamar.Text & "','" & Me.TxtDiagnosa.Text & "' " & _
+                                   "('" & Request.QueryString("noRM") & "','" & Request.QueryString("noReg") & "','" & Period & "','" & (Me.DDLRUANG.SelectedValue) & "','" & Me.DDLKamar.SelectedItem.Text & "','" & Me.TxtDiagnosa.Text & "' " & _
                                    ",'" & convertDateInput(dateVENAPasang.Text) & "','" & convertDateInput(dateVENAAff.Text) & "','" & Me.TextLamaHari1.Text & "' " & _
                                    ",'" & convertDateInput(dateCVPPasang.Text) & "','" & convertDateInput(dateCVPAff.Text) & "','" & Me.TextLamaHari2.Text & "' " & _
                                    ",'" & convertDateInput(dateUrinePasang.Text) & "','" & convertDateInput(dateUrineAFF.Text) & "','" & Me.TextLamaHari3.Text & "' " & _
@@ -488,7 +516,7 @@ Partial Class FormInputSurveilansInfeksi
                                     ",'" & convertDateInput(Me.dateKejHAP.Text) & "','" & Me.txtKulturHAP.Text & "','" & convertDateInput(Me.dateKejIADP.Text) & "','" & Me.txtKulturIADP.Text & "','" & convertDateInput(Me.dateKejPlebitis.Text) & "','" & Me.txtKulturPlebitis.Text & "','" & convertDateInput(Me.dateKejDekubitus.Text) & "','" & Me.txtKulturDekubitus.Text & "' " & _
                                     ",'" & Me.txtAntibiotika.Text & "','" & Session("ssUserName") & "','" & MasterLib.GetCurrentDate & "','" & Session("ssUserName") & "','" & MasterLib.GetCurrentDate & "')"
 
-            
+
 
             End If
 
@@ -515,14 +543,21 @@ Partial Class FormInputSurveilansInfeksi
         Return tanggal_return
     End Function
     Protected Sub BtnSaveInfeksi_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BtnSaveInfeksi.Click
-        Dim saveData As Boolean
-        saveData = simpanData()
-        If (saveData) Then
-            PESAN("Data Berhasil Disimpan")
-            bindDataExists(Request.QueryString("noRM"), Request.QueryString("noReg"))
+        If (Me.DDLRUANG.SelectedItem.Value = "---") Then
+            PESAN("Mohon Pilih Ruangan")
+        ElseIf (Me.DDLKamar.SelectedItem.Value.Length = 0 Or Me.DDLKamar.SelectedItem.Value = "---") Then
+            PESAN("Mohon Pilih Kamar")
         Else
-            PESAN(Pesan_gagal)
+            Dim saveData As Boolean
+            saveData = simpanData()
+            If (saveData) Then
+                PESAN("Data Berhasil Disimpan")
+                bindDataExists(Request.QueryString("transactionId"), Request.QueryString("noRM"), Request.QueryString("noReg"))
+            Else
+                PESAN(Pesan_gagal)
+            End If
         End If
+
     End Sub
 
     Private Function getKodeRuang(ByVal ruang As String) As String
@@ -550,6 +585,32 @@ Partial Class FormInputSurveilansInfeksi
         Return ruang_return
     End Function
 
+
+    Private Function getNamaRuang(ByVal ruang As String) As String
+        Dim ruang_return As String = ""
+        Dim strsql As String = ""
+        strsql = "SELECT vc_n_ruang " & _
+                 " FROM RMRuang where upper(vc_k_ruang) = UPPER('" & ruang & "') "
+
+        Dim connectionString As String = WebConfigurationManager.ConnectionStrings("koneksi").ConnectionString
+        Dim connection As SqlConnection = New SqlConnection(connectionString)
+        Dim command As SqlCommand = New SqlCommand()
+
+        Dim sqlCommand As New SqlClient.SqlCommand(strsql)
+        sqlCommand.Connection = connection
+        connection.Open()
+
+        Dim dr As SqlClient.SqlDataReader
+        dr = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection)
+
+        While dr.Read
+            ruang_return = dr("vc_n_ruang")
+        End While
+        dr.Close()
+
+        Return ruang_return
+    End Function
+
     Private Sub PESAN(ByVal cpesan As String)
         ClientScript.RegisterStartupScript(Me.GetType, "ClientSideScript", "<script type='text/javascript'>window.alert('" & cpesan & "')</script>")
     End Sub
@@ -557,7 +618,7 @@ Partial Class FormInputSurveilansInfeksi
    
 
     Protected Sub btnEdit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEdit.Click
-        If (checkSurInfeksiExists(Request.QueryString("noRM"), Request.QueryString("noReg")) = True) Then
+        If (checkSurInfeksiExists(Request.QueryString("transactionId"), Request.QueryString("noRM"), Request.QueryString("noReg")) = True) Then
             enabledForm()
             Me.BtnSaveInfeksi.Enabled = True
         Else
@@ -569,6 +630,67 @@ Partial Class FormInputSurveilansInfeksi
 
     Protected Sub btnKeluar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnKeluar.Click
         Session("urlback") = Request.Url.ToString
-        Response.Redirect("~/BERANDA.aspx")
+        Response.Redirect("~/FormSearchingInputSurveilans.aspx")
     End Sub
+
+    Protected Sub DDLRUANG_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles DDLRUANG.SelectedIndexChanged
+      getNamaKamarFromRuang()
+    End Sub
+
+    Protected Sub getNamaKamarFromRuang()
+        Dim kode_ruang As String = DDLRUANG.SelectedValue.ToString()
+        With Me.DDLKamar
+            .DataSource = FillKamar(kode_ruang)
+            .DataValueField = "vc_no_bed"
+            .DataTextField = "vc_nama"
+            .DataBind()
+        End With
+        DDLKamar.Items.Insert(0, New ListItem("---", "---"))
+    End Sub
+
+
+    Private Function FillKamar(ByVal kode_ruang As String) As DataSet
+        Dim strSQL As String = ""
+        Dim connectionString As String = WebConfigurationManager.ConnectionStrings("koneksi").ConnectionString
+        Dim connection As SqlConnection = New SqlConnection(connectionString)
+
+        strSQL = "SELECT vc_no_bed ,vc_nama FROM RMKamar where vc_k_gugus = '" & kode_ruang & "'"
+
+
+        Dim ds As New DataSet
+        Dim da As New SqlDataAdapter
+        Dim conn As New SqlConnection(connectionString)
+        conn.Open()
+        Dim comm As SqlCommand = New SqlCommand(strSQL, conn)
+        da.SelectCommand = comm
+        da.Fill(ds)
+        conn.Close()
+        Return ds
+    End Function
+
+
+    Private Function getKodeKamar(ByVal kamar As String) As String
+        Dim kamar_return As String = ""
+        Dim strsql As String = ""
+        strsql = "SELECT vc_no_bed " & _
+                 " FROM RMKamar where upper(vc_nama) = UPPER('" & kamar & "') "
+
+        Dim connectionString As String = WebConfigurationManager.ConnectionStrings("koneksi").ConnectionString
+        Dim connection As SqlConnection = New SqlConnection(connectionString)
+        Dim command As SqlCommand = New SqlCommand()
+
+        Dim sqlCommand As New SqlClient.SqlCommand(strsql)
+        sqlCommand.Connection = connection
+        connection.Open()
+
+        Dim dr As SqlClient.SqlDataReader
+        dr = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection)
+
+        While dr.Read
+            kamar_return = dr("vc_no_bed")
+        End While
+        dr.Close()
+
+        Return kamar_return
+    End Function
 End Class

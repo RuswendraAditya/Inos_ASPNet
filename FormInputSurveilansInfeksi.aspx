@@ -1,19 +1,19 @@
-<%@ Page Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" EnableEventValidation ="true"  CodeFile="FormInputSurveilansInfeksi.aspx.vb" Inherits="FormInputSurveilansInfeksi" title="Input Surveilans Infeksi Pasien" %>
+<%@ Page Language="VB" MasterPageFile="~/MasterPageBlank.master" AutoEventWireup="false" EnableEventValidation ="true"  CodeFile="FormInputSurveilansInfeksi.aspx.vb" Inherits="FormInputSurveilansInfeksi" title="Input Surveilans Infeksi Pasien" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <table style="width: 756px">
+    <table style="width: 500px">
      <tr>
-            <td style="width: 18px; height: 20px">
+            <td style="width: 210px; height: 55px">
             </td>
-            <td style="width: 105px; height: 20px;">
+            <td style="width: 105px; height: 55px;">
                </td>
             <td colspan="2" style="font-weight: bold; font-size: 14pt; color: blue; height: 55px;">
                 DATA DEMOGRAFI PASIEN</td>
         </tr>
         <tr>
         
-            <td style="width: 18px; height: 20px">
+            <td style="width: 210px; height: 20px">
             </td>
             <td style="width: 105px; height: 20px;">
                 No.RM</td>
@@ -30,7 +30,7 @@
                 </td>
         </tr>
         <tr>
-            <td style="width: 18px; height: 29px;">
+            <td style="width: 210px; height: 29px;">
             </td>
             <td style="width: 105px; height: 29px;">
                 Nama</td>
@@ -43,10 +43,10 @@
             <td style="width: 390px; height: 29px;">
                 :</td>
             <td style="width: 85px; height: 29px;">
-                <asp:TextBox ID="TxtAlamat" runat="server" Width="568px" Enabled="False"></asp:TextBox></td>
+                <asp:TextBox ID="TxtAlamat" runat="server" Width="350px" Enabled="False"></asp:TextBox></td>
         </tr>
         <tr>
-            <td style="width: 18px; height: 20px;">
+            <td style="width: 210px; height: 20px;">
             </td>
             <td style="width: 105px; height: 20px;">
                 Umur</td>
@@ -63,33 +63,56 @@
                 <asp:TextBox ID="TxtKelamin" runat="server" Width="88px" Enabled="False"></asp:TextBox></td>
         </tr>
         <tr>
-            <td style="width: 18px; height: 19px;">
+            <td style="width: 210px; height: 19px;">
             </td>
             <td style="width: 105px; height: 19px;">
                 Ruang</td>
             <td style="width: 9px; height: 19px;">
                 :</td>
             <td style="width: 486px; height: 19px;">
-                <asp:TextBox ID="TxtRuang" runat="server" Width="288px" Enabled="False"></asp:TextBox></td>
+                <asp:DropDownList ID="DDLRUANG" runat="server" AutoPostBack="True">
+                </asp:DropDownList></td>
             <td style="width: 486px; height: 19px">
                 Kamar</td>
             <td style="width: 486px; height: 19px">
                 :</td>
             <td style="width: 486px; height: 19px">
-                <asp:TextBox ID="txtKamar" runat="server" Enabled="False" Height="24px" Width="448px"></asp:TextBox></td>
+                <asp:DropDownList ID="DDLKamar" AutoPostBack="True" runat="server" Width="304px">
+                </asp:DropDownList></td>
         </tr>
         <tr>
-            <td style="width: 18px; height: 23px">
+            <td style="width: 210px; height: 19px">
             </td>
-            <td style="width: 105px; height: 23px">
+            <td style="width: 105px; height: 19px">
+                Periode</td>
+            <td style="width: 9px; height: 19px">
             </td>
-            <td style="width: 9px; height: 23px">
-            </td>
-            <td style="width: 486px; height: 23px">
+            <td colspan="4" style="height: 19px">
+                Bulan<asp:DropDownList ID="ddlbulan" runat="server" AutoPostBack="True" Width="48px">
+                
+                    <asp:ListItem>1</asp:ListItem>
+                    <asp:ListItem>2</asp:ListItem>
+                    <asp:ListItem>3</asp:ListItem>
+                    <asp:ListItem>4</asp:ListItem>
+                    <asp:ListItem>5</asp:ListItem>
+                    <asp:ListItem>6</asp:ListItem>
+                    <asp:ListItem>7</asp:ListItem>
+                    <asp:ListItem>8</asp:ListItem>
+                    <asp:ListItem>9</asp:ListItem>
+                    <asp:ListItem>10</asp:ListItem>
+                    <asp:ListItem>11</asp:ListItem>
+                    <asp:ListItem>12</asp:ListItem>
+                </asp:DropDownList>
+                &nbsp;Tahun
+                <asp:TextBox ID="TxtTahun" runat="server" AutoPostBack="True" MaxLength="10" TabIndex="5"
+                    Width="59px"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td style="width: 210px; height: 23px">
             </td>
         </tr>
     </table>
-    &nbsp;<br />
+    &nbsp; &nbsp;<br />
     <br />
     <table style="width: 900px" border="1px">
     <tr>
@@ -313,13 +336,13 @@
     &nbsp;<span id="ctl00_lblstatus" style="display: inline-block; font-weight: bold;
         font-size: 14pt; width: 1056px; color: green; font-style: normal; height: 40px;
         font-variant: normal">Infeksi Rumah Sakit</span><br />
-    <table border="1" style="width: 1020px">
+    <table border="1" style="width: 904px; height: 440px;">
         <tr>
             <td style="font-weight: bold; width: 139px; height: 38px; background-color: #33ff00">
                 Infeksi Rumah Sakit</td>
             <td style="font-weight: bold; width: 183px; height: 38px; background-color: #33ff00">
                 Tanggal Kejadian</td>
-            <td style="font-weight: bold; width: 205px; height: 38px; background-color: #33ff00">
+            <td style="font-weight: bold; width: 309px; height: 38px; background-color: #33ff00">
                 Hasil Kultur</td>
         </tr>
         <tr>
@@ -328,7 +351,7 @@
             <td style="width: 183px; height: 29px; background-color: #ffffff">
                 <asp:TextBox ID="dateKejIDO" runat="server" Width="88px"></asp:TextBox>&nbsp;
                 <asp:Image ID="ImageKejIDO" runat="server" ImageUrl="~/Images/Calendar.png" /></td>
-            <td style="width: 545px; height: 29px; background-color: #ffffff">
+            <td style="width: 309px; height: 29px; background-color: #ffffff">
                 <asp:TextBox ID="txtKulturIDO" runat="server" Height="48px" TextMode="MultiLine"
                     Width="520px"></asp:TextBox></td>
             <ajaxToolkit:CalendarExtender ID="CalendarExtender15" runat="server" DaysModeTitleFormat="dd/MM/yyyy"
@@ -342,7 +365,7 @@
             <td style="width: 183px; height: 29px; background-color: #ffffff">
                 <asp:TextBox ID="dateKejISK" runat="server" Width="88px"></asp:TextBox>&nbsp;
                 <asp:Image ID="ImageKejISK" runat="server" ImageUrl="~/Images/Calendar.png" /></td>
-            <td style="width: 545px; height: 30px; background-color: #ffffff">
+            <td style="width: 309px; height: 30px; background-color: #ffffff">
                 <asp:TextBox ID="txtKulturISK" runat="server" Height="48px" TextMode="MultiLine"
                     Width="520px"></asp:TextBox></td>
             <ajaxToolkit:CalendarExtender ID="CalendarExtender16" runat="server" DaysModeTitleFormat="dd/MM/yyyy"
@@ -357,7 +380,7 @@
                 <asp:TextBox ID="dateKejVAP" runat="server" Width="88px"></asp:TextBox>&nbsp;
                 <asp:Image ID="ImageKejVAP" runat="server" ImageUrl="~/Images/Calendar.png" />
             </td>
-            <td style="width: 545px; height: 29px; background-color: #ffffff">
+            <td style="width: 309px; height: 29px; background-color: #ffffff">
                 <asp:TextBox ID="txtKulturVAP" runat="server" Height="48px" TextMode="MultiLine"
                     Width="520px"></asp:TextBox></td>
             <ajaxToolkit:CalendarExtender ID="CalendarExtender17" runat="server" DaysModeTitleFormat="dd/MM/yyyy"
@@ -372,7 +395,7 @@
                 <asp:TextBox ID="dateKejHAP" runat="server" Width="88px"></asp:TextBox>&nbsp;
                 <asp:Image ID="ImageKejHAP" runat="server" ImageUrl="~/Images/Calendar.png" />
             </td>
-            <td style="width: 545px; height: 29px; background-color: #ffffff">
+            <td style="width: 309px; height: 29px; background-color: #ffffff">
                 <asp:TextBox ID="txtKulturHAP" runat="server" Height="48px" TextMode="MultiLine"
                     Width="520px"></asp:TextBox></td>
             <ajaxToolkit:CalendarExtender ID="CalendarExtender18" runat="server" DaysModeTitleFormat="dd/MM/yyyy"
@@ -387,7 +410,7 @@
                 <asp:TextBox ID="dateKejIADP" runat="server" Width="88px"></asp:TextBox>&nbsp;
                 <asp:Image ID="ImageKejIADP" runat="server" ImageUrl="~/Images/Calendar.png" />
             </td>
-            <td style="width: 545px; height: 28px; background-color: #ffffff">
+            <td style="width: 309px; height: 28px; background-color: #ffffff">
                 <asp:TextBox ID="txtKulturIADP" runat="server" Height="48px" TextMode="MultiLine"
                     Width="520px"></asp:TextBox></td>
             <ajaxToolkit:CalendarExtender ID="CalendarExtender19" runat="server" DaysModeTitleFormat="dd/MM/yyyy"
@@ -402,7 +425,7 @@
                 <asp:TextBox ID="dateKejPlebitis" runat="server" Width="88px"></asp:TextBox>&nbsp;
                 <asp:Image ID="ImageKejPlebitis" runat="server" ImageUrl="~/Images/Calendar.png" />
             </td>
-            <td style="width: 545px; height: 23px; background-color: #ffffff">
+            <td style="width: 309px; height: 23px; background-color: #ffffff">
                 <asp:TextBox ID="txtKulturPlebitis" runat="server" Height="48px" TextMode="MultiLine"
                     Width="520px"></asp:TextBox></td>
             <ajaxToolkit:CalendarExtender ID="CalendarExtender20" runat="server" DaysModeTitleFormat="dd/MM/yyyy"
@@ -417,7 +440,7 @@
                 <asp:TextBox ID="dateKejDekubitus" runat="server" Width="88px"></asp:TextBox>&nbsp;
                 <asp:Image ID="ImageKejDekubitus" runat="server" ImageUrl="~/Images/Calendar.png" />
             </td>
-            <td style="width: 545px; height: 29px; background-color: #ffffff">
+            <td style="width: 309px; height: 29px; background-color: #ffffff">
                 <asp:TextBox ID="txtKulturDekubitus" runat="server" Height="48px" TextMode="MultiLine"
                     Width="520px"></asp:TextBox></td>
             <ajaxToolkit:CalendarExtender ID="CalendarExtender21" runat="server" DaysModeTitleFormat="dd/MM/yyyy"
@@ -427,7 +450,7 @@
         </tr>
     </table>
     <br />
-    <table border="1" style="width: 1020px">
+    <table border="1" style="width: 904px; height: 40px;">
         <tr>
             <td style="font-weight: bold; width: 140px; height: 30px; background-color: yellow">
                 Penggunaan Antibiotika</td>
