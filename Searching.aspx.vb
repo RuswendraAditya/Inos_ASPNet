@@ -54,7 +54,7 @@ Partial Class Searching
         End If
 
         If Me.TxtCariNoRM.Text <> "" Then
-            strsql = strsql & "AND ([VC_no_rm])like '%" & UCase(Me.TxtCariNoRM.Text) & "%' "
+            strsql = strsql & "AND ([RMPasien.vc_no_rm])like '%" & UCase(Me.TxtCariNoRM.Text) & "%' "
         End If
 
         strsql = strsql + " ORDER BY RMPasien.VC_NAMA_P"

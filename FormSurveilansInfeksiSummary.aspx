@@ -116,9 +116,128 @@
                             <HeaderStyle HorizontalAlign="Center" Width="90px" />
                             <ItemStyle HorizontalAlign="Right" />
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Operasi" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblTirah_2" runat="server" Text='<%# Bind("operasi") %>'></asp:Label >
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="B" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblTirah_2" runat="server" Text='<%# Bind("bt_operasi_b") %>'></asp:Label >
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                          <asp:TemplateField HeaderText="K" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblTirah_2" runat="server" Text='<%# Bind("bt_operasi_k") %>'></asp:Label >
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="BT" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblTirah_2" runat="server" Text='<%# Bind("bt_operasi_bt") %>'></asp:Label >
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
                               <asp:TemplateField HeaderText="Dekubitus">
                             <ItemTemplate>
                                 <asp:Label ID="lblHAP" runat="server"  Text='<%# Bind("dekubitus") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="TBC(YA)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblYa" runat="server"  Text='<%# Bind("bt_tbc_ya") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                          <asp:TemplateField HeaderText="TBC(Tidak)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblYa" runat="server"  Text='<%# Bind("bt_tbc_tidak") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                          <asp:TemplateField HeaderText="HIV(YA)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblYa" runat="server"  Text='<%# Bind("bt_hiv_ya") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                          <asp:TemplateField HeaderText="HIV(Tidak)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblYa" runat="server"  Text='<%# Bind("bt_hiv_tidak") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                          <asp:TemplateField HeaderText="Hepatitis(YA)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblYa" runat="server"  Text='<%# Bind("bt_hepa_ya") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                          <asp:TemplateField HeaderText="Hepatitis(Tidak)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblYa" runat="server"  Text='<%# Bind("bt_hepa_tidak") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Covid(Ya)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblYa" runat="server"  Text='<%# Bind("bt_covid_ya") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Covid(Tidak)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblYa" runat="server"  Text='<%# Bind("bt_covid_tidak") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Pakai Antibiotika(YA)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblYa" runat="server"  Text='<%# Bind("bt_antibiotika_ya") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Pakai Antibiotika(Tidak)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblTidak" runat="server"  Text='<%# Bind("bt_antibiotika_tidak") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Total Pasien Input">
+                            <ItemTemplate>
+                                <asp:Label ID="lblTotal" runat="server"  Text='<%# Bind("tran_id") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Persentase Pakai Antibiotika(Ya)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblHAP" runat="server"  Text='<%# Bind("persen_ya") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Persentase Hasil Kultur MDRO(Ya)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblHAP" runat="server"  Text='<%# Bind("persen_ya_mdro") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" Width="90px" />
                             <ItemStyle HorizontalAlign="Right" />

@@ -123,7 +123,7 @@ Partial Class FormSearchingInputSurveilans
 
         Dim strsql As String = ""
         Dim dataExists As Boolean = False
-        strsql = "SELECT vc_no_rm,vc_no_reg FROM  Inos_Surveilans_Infeksi where vc_no_rm = '" & noRm & "' and vc_no_reg = '" & noReg & "'"
+        strsql = "SELECT vc_no_rm,vc_no_reg FROM  Inos_Surveilans_Infeksi where vc_no_rm = '" & noRm & "' and vc_no_reg = '" & noReg & "' and ISNULL(bt_hapus, 0 ) = 0 "
 
         Dim connectionString As String = WebConfigurationManager.ConnectionStrings("koneksi").ConnectionString
         Dim connection As SqlConnection = New SqlConnection(connectionString)

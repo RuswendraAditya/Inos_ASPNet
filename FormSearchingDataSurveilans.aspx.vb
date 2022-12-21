@@ -29,7 +29,7 @@ Partial Class FormSearchingDataSurveilans
         "LEFT JOIN RMPasien pasien " & _
         "ON isi.vc_no_rm = pasien.vc_no_rm LEFT JOIN RMRuang ruang " & _
         "ON isi.vc_ruang = ruang.VC_k_ruang " & _
-        " WHERE isi.vc_no_rm ='" & noRM & "'  and isi.vc_no_reg='" & noReg & "'  "
+        " WHERE isi.vc_no_rm ='" & noRM & "'  and isi.vc_no_reg='" & noReg & "' and ISNULL(bt_hapus, 0 ) = 0 "
 
 
         SdsPasien.SelectCommand = strsql
